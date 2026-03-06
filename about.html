@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Kojo Greg</title>
+    <meta
+      name="description"
+      content="About Kojo Greg — Software Engineer based in Ghana specializing in scalable backend systems and enterprise platforms."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23060608'/><text y='.9em' font-size='72' font-family='serif' fill='%23c0392b'>K</text></svg>"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .page-hero {
+        padding: 12rem 4rem 6rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .page-hero h1 {
+        font-family: var(--display);
+        font-size: clamp(3.5rem, 7vw, 6.5rem);
+        font-weight: 600;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        animation: fadeUp 0.9s ease both;
+      }
+      .page-hero h1 em {
+        color: var(--accent2);
+        font-style: italic;
+      }
+      .hero-right {
+        animation: fadeUp 0.9s 0.2s ease both;
+      }
+
+      /* Photo block */
+      .photo-frame {
+        width: 100%;
+        aspect-ratio: 3/4;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg2);
+      }
+      .photo-frame::before {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border: 1px solid rgba(192, 57, 43, 0.1);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .corner {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-color: var(--accent);
+        border-style: solid;
+        z-index: 2;
+      }
+      .corner.tl {
+        top: 0;
+        left: 0;
+        border-width: 2px 0 0 2px;
+      }
+      .corner.tr {
+        top: 0;
+        right: 0;
+        border-width: 2px 2px 0 0;
+      }
+      .corner.bl {
+        bottom: 0;
+        left: 0;
+        border-width: 0 0 2px 2px;
+      }
+      .corner.br {
+        bottom: 0;
+        right: 0;
+        border-width: 0 2px 2px 0;
+      }
+      .photo-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--muted);
+        text-align: center;
+      }
+      .photo-placeholder .icon {
+        font-family: var(--display);
+        font-size: 3rem;
+        color: var(--border2);
+      }
+
+      /* Status */
+      .status-bar {
+        margin-top: 1px;
+        padding: 1rem 1.5rem;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--text);
+      }
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        background: #27ae60;
+        border-radius: 50%;
+        flex-shrink: 0;
+        box-shadow: 0 0 8px #27ae60;
+        animation: blink 2s ease infinite;
+      }
+
+      /* About body */
+      .about-body {
+        padding: 6rem 4rem;
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 5rem;
+        align-items: start;
+      }
+      .bio p {
+        font-family: var(--body);
+        font-size: 0.95rem;
+        color: var(--dim);
+        line-height: 1.95;
+        margin-bottom: 1.5rem;
+      }
+      .bio p strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .bio-ctas {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      /* Values */
+      .values {
+        margin-top: 3.5rem;
+        padding-top: 3.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .values-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .val-card {
+        padding: 1.8rem;
+        border: 1px solid var(--border);
+        transition: border-color 0.3s;
+      }
+      .val-card:hover {
+        border-color: var(--accent);
+      }
+      .val-icon {
+        font-family: var(--display);
+        font-size: 1.6rem;
+        color: var(--accent);
+        margin-bottom: 0.8rem;
+        display: block;
+      }
+      .val-card h4 {
+        font-family: var(--display);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+      .val-card p {
+        font-family: var(--body);
+        font-size: 0.78rem;
+        color: var(--dim);
+        line-height: 1.7;
+      }
+
+      /* Side panel */
+      .about-side {
+        position: sticky;
+        top: 7rem;
+      }
+      .info-panel {
+        border: 1px solid var(--border);
+        margin-bottom: 1px;
+      }
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .info-row:last-child {
+        border-bottom: none;
+      }
+      .ir-key {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .ir-val {
+        font-family: var(--body);
+        font-size: 0.82rem;
+        color: var(--text);
+      }
+
+      /* Skill bars */
+      .skills-section {
+        padding: 6rem 4rem;
+        border-top: 1px solid var(--border);
+      }
+      .skills-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        margin-top: 3.5rem;
+      }
+      .skill-group h3 {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        color: var(--accent2);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .skill-group h3::before {
+        content: "//";
+        color: var(--muted);
+      }
+      .skill-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .skill-bar-item {
+      }
+      .skill-bar-top {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--dim);
+        margin-bottom: 0.5rem;
+      }
+      .skill-bar-track {
+        height: 3px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .skill-fill {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, var(--accent), var(--accent3));
+        border-radius: 2px;
+        transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @media (max-width: 960px) {
+        .page-hero {
+          grid-template-columns: 1fr;
+          padding: 9rem 1.5rem 4rem;
+        }
+        .hero-right {
+          display: none;
+        }
+        .about-body {
+          grid-template-columns: 1fr;
+          padding: 4rem 1.5rem;
+          gap: 3rem;
+        }
+        .about-side {
+          position: static;
+        }
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .skills-section {
+          padding: 4rem 1.5rem;
+        }
+        .skills-cols {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-transition"></div>
+    <div class="cursor"></div>
+    <div class="cursor-ring"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <div class="noise"></div>
+
+    <nav>
+      <a href="index.html" class="nav-logo">Kojo <em>Greg</em></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="services.html">Services</a>
+        <a href="work.html">Work</a
+        ><a href="about.html" class="active">About</a>
+        <a href="contact.html" class="nav-cta">Let's Talk</a>
+      </div>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="mobile-menu">
+      <a href="index.html">Home</a><a href="services.html">Services</a>
+      <a href="work.html">Work</a><a href="about.html">About</a
+      ><a href="contact.html">Let's Talk</a>
+    </div>
+
+    <section class="page-hero">
+      <div>
+        <div class="label">About</div>
+        <h1>The engineer<br />behind the<br /><em>systems.</em></h1>
+      </div>
+    </section>
+
+    <section class="about-body">
+      <div class="bio fade-up">
+        <div class="label">Who I Am</div>
+        <p>
+          I'm <strong>Kojo Greg</strong> — a Software Engineer specializing in
+          scalable, data-driven systems that solve complex operational and
+          organizational challenges. My work sits at the intersection of
+          full-stack development, backend architecture, and large-scale data
+          infrastructure.
+        </p>
+        <p>
+          Over my career I've designed and shipped enterprise platforms that
+          organizations depend on daily — HR and appraisal systems deployed
+          across government agencies, agricultural data platforms processing
+          millions of records, and analytics infrastructure serving thousands of
+          concurrent users. These aren't toy projects — they're mission-critical
+          systems that need to be correct, fast, and reliable.
+        </p>
+        <p>
+          My engineering philosophy emphasizes
+          <strong
+            >performance, security, clean architecture, and reliability</strong
+          >. I care deeply about system design decisions because they compound —
+          good architecture makes everything easier; poor architecture makes
+          everything harder, especially at scale.
+        </p>
+        <p>
+          I'm based in <strong>Accra, Ghana</strong> and work with clients and
+          organizations worldwide. Driven by curiosity and a genuine love of
+          building things that work, I'm always exploring emerging technologies
+          and looking for problems worth solving.
+        </p>
+        <div class="bio-ctas">
+          <a href="contact.html" class="btn btn-primary"
+            >Let's Work Together →</a
+          >
+          <!-- <a href="#" class="btn btn-outline" onclick="alert('Add your CV file and update this link to cv.pdf'); return false;">Download CV ↓</a> -->
+        </div>
+
+        <div class="values">
+          <div class="label">Engineering Philosophy</div>
+          <div class="values-grid">
+            <div class="val-card">
+              <span class="val-icon">Σ</span>
+              <h4>Architecture First</h4>
+              <p>
+                Good systems start with good design. I invest heavily upfront
+                because architecture decisions define the ceiling of what's
+                possible.
+              </p>
+            </div>
+            <div class="val-card">
+              <span class="val-icon">⚡</span>
+              <h4>Performance is a Feature</h4>
+              <p>
+                Speed and efficiency aren't afterthoughts. I build for scale
+                from the start, with optimization baked in throughout.
+              </p>
+            </div>
+            <div class="val-card">
+              <span class="val-icon">◈</span>
+              <h4>Clean Code, Always</h4>
+              <p>
+                Code is read far more than it's written. I write for
+                maintainability, clarity, and the engineers who come after me.
+              </p>
+            </div>
+            <div class="val-card">
+              <span class="val-icon">∞</span>
+              <h4>Continuous Learning</h4>
+              <p>
+                Technology moves fast. Staying curious and engaged with emerging
+                tools keeps my engineering sharp and relevant.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-side fade-up">
+        <div class="info-panel">
+          <div class="info-row">
+            <span class="ir-key">Name</span
+            ><span class="ir-val">Kojo Greg</span>
+          </div>
+          <div class="info-row">
+            <span class="ir-key">Based</span
+            ><span class="ir-val">Accra, Ghana</span>
+          </div>
+          <div class="info-row">
+            <span class="ir-key">Timezone</span
+            ><span class="ir-val">GMT+0</span>
+          </div>
+          <div class="info-row">
+            <span class="ir-key">Focus</span
+            ><span class="ir-val">Backend & Data</span>
+          </div>
+          <div class="info-row">
+            <span class="ir-key">Available</span
+            ><span class="ir-val">Worldwide</span>
+          </div>
+          <div class="info-row">
+            <span class="ir-key">Languages</span
+            ><span class="ir-val">English</span>
+          </div>
+        </div>
+        <div style="height: 1rem"></div>
+        <div class="info-panel">
+          <div class="info-row">
+            <span class="ir-key">GitHub</span
+            ><a
+              href="https://github.com/dga-greg"
+              target="_blank"
+              style="
+                font-family: var(--mono);
+                font-size: 0.78rem;
+                color: var(--accent2);
+                text-decoration: none;
+              "
+              >dga-greg ↗</a
+            >
+          </div>
+          <div class="info-row">
+            <span class="ir-key">WhatsApp</span
+            ><a
+              href="https://wa.me/233546698832"
+              target="_blank"
+              style="
+                font-family: var(--mono);
+                font-size: 0.78rem;
+                color: var(--accent2);
+                text-decoration: none;
+              "
+              >+233 546 6988 32 ↗</a
+            >
+          </div>
+
+          <div class="info-row">
+            <span class="ir-key">Email</span
+            ><a
+              href="mailto:gapeatu@gmail.com"
+              style="
+                font-family: var(--mono);
+                font-size: 0.72rem;
+                color: var(--accent2);
+                text-decoration: none;
+              "
+              >gapeatu@gmail.com</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL BARS -->
+    <section class="skills-section">
+      <div class="label">Technical Skills</div>
+      <h2 class="section-title fade-up">What I work with.</h2>
+      <div class="skills-cols skills-bars">
+        <div class="skill-group">
+          <h3>Languages & Frontend</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>JavaScript / TypeScript</span><span>95%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="95%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>Angular / RxJS</span><span>92%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="92%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>HTML / CSS / SCSS / Bootstrap</span><span>90%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="90%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>Node.js / Express.js</span><span>93%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="93%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>REST APIs / GraphQL</span><span>95%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Data, Infra & Architecture</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>PostgreSQL / MySQL / MongoDB</span><span>92%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="92%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>Redis / Firebase</span><span>88%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="88%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>Data Pipelines / ETL / Aggregations</span><span>90%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="90%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>Docker / Nginx / GitHub Actions</span><span>85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="85%"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-top">
+                <span>System Design / Microservices / RBAC</span
+                ><span>93%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-fill" data-width="93%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOLS CHIPS -->
+      <div
+        style="
+          margin-top: 3rem;
+          padding-top: 2.5rem;
+          border-top: 1px solid var(--border);
+        "
+      >
+        <div class="label" style="margin-bottom: 1.2rem">Tools & Others</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem">
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >Git</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >Postman</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >Jira</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >Figma</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >VS Code</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >Linux</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >Geospatial Queries</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >WebSockets</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >CQRS</span
+          >
+          <span
+            style="
+              font-family: var(--mono);
+              font-size: 0.72rem;
+              color: var(--dim);
+              border: 1px solid var(--border);
+              padding: 0.35rem 0.9rem;
+              border-radius: 1px;
+            "
+            >Event-Driven Architecture</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-brand">
+        <span class="logo">Kojo <em>Greg</em></span>
+        <p>
+          Software Engineer specializing in scalable, data-driven systems. Based
+          in Ghana. Available worldwide.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a><a href="services.html">Services</a
+        ><a href="work.html">Work</a><a href="about.html">About</a
+        ><a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Online</h4>
+        <a href="https://github.com/dga-greg" target="_blank">GitHub</a>
+        <a href="https://wa.me/23354669832" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:gapeatu@gmail.com">gapeatu@gmail.com</a>
+      </div>
+    </footer>
+    <div class="footer-bottom">
+      <p>© 2026 Kojo Greg. All rights reserved.</p>
+      <p>Based in Ghana · Available worldwide</p>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

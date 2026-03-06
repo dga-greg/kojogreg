@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — Kojo Greg</title>
+  <meta name="description" content="Software engineering services — backend architecture, data systems, enterprise platforms, and full-stack development."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23060608'/><text y='.9em' font-size='72' font-family='serif' fill='%23c0392b'>K</text></svg>"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .page-hero {
+      padding: 12rem 4rem 6rem;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::after {
+      content: 'SERVICES';
+      position: absolute; right: -1rem; bottom: -1rem;
+      font-family: var(--display); font-size: 12rem; font-weight: 700;
+      color: rgba(192,57,43,0.03); line-height: 1;
+      pointer-events: none; user-select: none;
+      letter-spacing: -0.04em;
+    }
+    .page-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 600; line-height: 1.02;
+      letter-spacing: -0.02em;
+      animation: fadeUp 0.9s ease both;
+    }
+    .page-hero h1 em { color: var(--accent2); font-style: italic; }
+    .page-hero p {
+      font-family: var(--body); font-size: 1rem;
+      color: var(--dim); max-width: 520px;
+      line-height: 1.8; margin-top: 1.5rem;
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+
+    /* Services */
+    .svc-section { padding: 0 4rem 6rem; }
+    .svc-block {
+      display: grid; grid-template-columns: 280px 1fr;
+      gap: 5rem; padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .svc-block:first-of-type { border-top: 1px solid var(--border); margin-top: 5rem; }
+    .svc-left { position: sticky; top: 7rem; }
+    .svc-left .num {
+      font-family: var(--display); font-size: 5rem; font-weight: 600;
+      color: rgba(192,57,43,0.08); line-height: 1; margin-bottom: 1rem;
+    }
+    .svc-left h2 {
+      font-family: var(--display); font-size: 1.8rem;
+      font-weight: 600; line-height: 1.15; margin-bottom: 1rem;
+    }
+    .svc-left .svc-lbl {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--accent2); letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .svc-left .svc-lbl::before { content: '—'; color: var(--accent); }
+
+    .svc-right p {
+      font-family: var(--body); font-size: 0.92rem;
+      color: var(--dim); line-height: 1.9;
+      margin-bottom: 2rem; max-width: 580px;
+    }
+    .caps-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.7rem; margin-bottom: 2.5rem;
+    }
+    .cap {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-family: var(--body); font-size: 0.82rem; color: var(--text);
+      padding: 0.8rem; border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .cap:hover { border-color: var(--accent); }
+    .cap::before { content: '▸'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+    .tech-row {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .tech-pill {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--accent2);
+      border: 1px solid rgba(192,57,43,0.2);
+      background: rgba(192,57,43,0.04);
+      padding: 0.3rem 0.8rem; border-radius: 1px;
+    }
+
+    /* CTA strip */
+    .cta-strip {
+      margin: 5rem 4rem;
+      padding: 4rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 2rem; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), var(--accent3));
+    }
+    .cta-strip h3 {
+      font-family: var(--display); font-size: 2rem; font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .cta-strip p { font-family: var(--body); font-size: 0.88rem; color: var(--dim); }
+
+    @media (max-width: 900px) {
+      .page-hero { padding: 9rem 1.5rem 4rem; }
+      .page-hero::after { display: none; }
+      .svc-section { padding: 0 1.5rem 4rem; }
+      .svc-block { grid-template-columns: 1fr; gap: 2.5rem; }
+      .svc-left { position: static; }
+      .cta-strip { margin: 4rem 1.5rem; padding: 2.5rem; flex-direction: column; align-items: flex-start; }
+      .caps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-transition"></div>
+  <div class="cursor"></div><div class="cursor-ring"></div>
+  <div class="bg-grid"></div><div class="bg-glow"></div><div class="noise"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Kojo <em>Greg</em></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Let's Talk</a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a><a href="services.html">Services</a>
+    <a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Let's Talk</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="label">Services</div>
+    <h1>What I build<br/><em>for you.</em></h1>
+    <p>From backend architecture to enterprise platforms — engineering built for performance, security, and real-world scale.</p>
+  </section>
+
+  <section class="svc-section">
+    <div class="svc-block">
+      <div class="svc-left fade-up">
+        <div class="num">01</div>
+        <div class="svc-lbl">Core Service</div>
+        <h2>Backend Architecture & API Design</h2>
+      </div>
+      <div class="svc-right fade-up">
+        <p>I design and build the backbone of your application — scalable APIs, clean service layers, and architectures that hold up when traffic spikes and data volumes grow. Whether you're starting fresh or untangling a legacy system, I deliver engineering that's structured to last.</p>
+        <div class="caps-grid">
+          <div class="cap">RESTful & GraphQL API Design</div>
+          <div class="cap">Microservices Architecture</div>
+          <div class="cap">Auth & Role-Based Access Control</div>
+          <div class="cap">Background Jobs & Queue Systems</div>
+          <div class="cap">Performance & Load Optimization</div>
+          <div class="cap">API Documentation & Standards</div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-pill">Node.js</span><span class="tech-pill">Python</span>
+          <span class="tech-pill">PostgreSQL</span><span class="tech-pill">MongoDB</span>
+          <span class="tech-pill">Redis</span><span class="tech-pill">Docker</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-block">
+      <div class="svc-left fade-up">
+        <div class="num">02</div>
+        <div class="svc-lbl">Data Systems</div>
+        <h2>Data Systems & Analytics Engineering</h2>
+      </div>
+      <div class="svc-right fade-up">
+        <p>I build the infrastructure that turns raw data into decisions. From aggregation pipelines processing millions of records to real-time dashboards surfacing operational insights — fast, reliable, and built for analytical workloads at scale.</p>
+        <div class="caps-grid">
+          <div class="cap">ETL & Data Pipeline Design</div>
+          <div class="cap">Database Schema Architecture</div>
+          <div class="cap">Aggregation & Reporting Engines</div>
+          <div class="cap">Real-Time Analytics Dashboards</div>
+          <div class="cap">Query & Index Optimization</div>
+          <div class="cap">Geospatial Data Systems</div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-pill">PostgreSQL</span><span class="tech-pill">MongoDB Aggregations</span>
+          <span class="tech-pill">Redis</span><span class="tech-pill">Elasticsearch</span>
+          <span class="tech-pill">Chart.js</span><span class="tech-pill">D3.js</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-block">
+      <div class="svc-left fade-up">
+        <div class="num">03</div>
+        <div class="svc-lbl">Enterprise</div>
+        <h2>Enterprise Platform Development</h2>
+      </div>
+      <div class="svc-right fade-up">
+        <p>Complex organizations need complex software — built right. I design and develop platforms that manage workflows, automate processes, and support hierarchical operations across large teams and agencies. I translate operational complexity into intelligent digital systems.</p>
+        <div class="caps-grid">
+          <div class="cap">Workflow Management Systems</div>
+          <div class="cap">HR & Appraisal Platforms</div>
+          <div class="cap">Multi-Tenant Architecture</div>
+          <div class="cap">Approval & Escalation Workflows</div>
+          <div class="cap">Reporting & Audit Trails</div>
+          <div class="cap">KRA/KPI Tracking Systems</div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-pill">Full-Stack</span><span class="tech-pill">RBAC</span>
+          <span class="tech-pill">Background Services</span><span class="tech-pill">Notifications</span>
+          <span class="tech-pill">PDF Generation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-block">
+      <div class="svc-left fade-up">
+        <div class="num">04</div>
+        <div class="svc-lbl">Full-Stack</div>
+        <h2>Full-Stack Development</h2>
+      </div>
+      <div class="svc-right fade-up">
+        <p>End-to-end development from database to UI. Complete applications — responsive frontends, robust backends, and everything between. Performance, security, and clean architecture are non-negotiable in every layer of the stack.</p>
+        <div class="caps-grid">
+          <div class="cap">Frontend Development (Angular)</div>
+          <div class="cap">Backend & API Engineering</div>
+          <div class="cap">Database Design & Optimization</div>
+          <div class="cap">Cloud Deployment & DevOps</div>
+          <div class="cap">CI/CD & GitHub Actions Pipelines</div>
+          <div class="cap">Security Implementation</div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-pill">Angular</span><span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Docker</span><span class="tech-pill">Nginx</span>
+          <span class="tech-pill">GitHub Actions</span><span class="tech-pill">Linux</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-strip fade-up">
+    <div>
+      <h3>Have a system to build?</h3>
+      <p>Let's talk through the scope, architecture, and the best way to tackle it.</p>
+    </div>
+    <a href="contact.html" class="btn btn-primary">Start a Conversation →</a>
+  </div>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">Kojo <em>Greg</em></span>
+      <p>Software Engineer specializing in scalable, data-driven systems. Based in Ghana. Available worldwide.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Online</h4><a href="https://github.com/dga-greg" target="_blank">GitHub</a>
+      <a href="https://wa.me/23354669832" target="_blank">WhatsApp</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:gapeatu@gmail.com">gapeatu@gmail.com</a></div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 Kojo Greg. All rights reserved.</p>
+    <p>Based in Ghana · Available worldwide</p>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

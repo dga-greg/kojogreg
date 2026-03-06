@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kojo Greg — Software Engineer</title>
+  <meta name="description" content="Kojo Greg — Software Engineer specializing in scalable, data-driven systems. Backend architecture, enterprise platforms, and large-scale data infrastructure."/>
+  <meta name="keywords" content="Software Engineer, Backend Architecture, Data Systems, Enterprise Platforms, Ghana, Full-Stack"/>
+  <meta property="og:title" content="Kojo Greg — Software Engineer"/>
+  <meta property="og:description" content="Scalable, data-driven systems. Backend architecture & enterprise platforms."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://dga-greg.github.io/kojogreg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:creator" content="@nemesisdevp"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23060608'/><text y='.9em' font-size='72' font-family='serif' fill='%23c0392b'>K</text></svg>"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 9rem 4rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    #heroCanvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 36px; height: 1px; background: var(--accent); }
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(4rem, 9vw, 8.5rem);
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero-name em { color: var(--accent2); font-style: normal; }
+    .hero-tagline {
+      font-family: var(--display);
+      font-size: clamp(1.5rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--dim);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.9s 0.2s ease both;
+      min-height: 3rem;
+    }
+    .hero-tagline .typing-cycle { color: var(--accent3); font-style: italic; }
+    .cursor-blink {
+      display: inline-block; width: 2px; height: 1em;
+      background: var(--accent2); margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 0.9s step-end infinite;
+    }
+    .hero-desc {
+      font-family: var(--body);
+      font-size: 1rem;
+      color: var(--dim);
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.9s 0.4s ease both; }
+
+    .hero-stats {
+      display: flex; gap: 4rem; flex-wrap: wrap;
+      margin-top: 5rem; padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.9s 0.55s ease both;
+      position: relative; z-index: 1;
+    }
+    .stat-num {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 600; line-height: 1;
+      color: var(--text);
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.65rem; color: var(--muted);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
+    /* Right deco */
+    .hero-deco {
+      position: absolute; right: 5rem; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 1px;
+      animation: fadeUp 1s 0.5s ease both;
+    }
+    .deco-line {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--border2);
+      white-space: nowrap;
+      line-height: 1.9;
+      transition: color 0.3s;
+    }
+    .deco-line.lit { color: var(--accent); }
+    .deco-line.dim2 { color: var(--muted); }
+
+    /* ── WHAT I DO ── */
+    .services-section {
+      padding: 7rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+    .services-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 4rem; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--border);
+    }
+    .svc-card {
+      background: var(--bg);
+      padding: 3rem;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .svc-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+      transition: width 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .svc-card:hover { background: var(--bg2); }
+    .svc-card:hover::after { width: 100%; }
+    .svc-num {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--muted); letter-spacing: 0.2em;
+      margin-bottom: 1.5rem;
+    }
+    .svc-icon {
+      font-family: var(--display); font-size: 2rem;
+      color: var(--accent); margin-bottom: 1rem; display: block;
+    }
+    .svc-card h3 {
+      font-family: var(--display); font-size: 1.5rem;
+      font-weight: 600; margin-bottom: 0.8rem;
+    }
+    .svc-card p {
+      font-family: var(--body); font-size: 0.85rem;
+      color: var(--dim); line-height: 1.8; margin-bottom: 1.5rem;
+    }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .svc-tag {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--muted); border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem; border-radius: 1px;
+    }
+
+    /* ── WORK ── */
+    .work-section { padding: 7rem 4rem; border-top: 1px solid var(--border); }
+    .work-list { margin-top: 3.5rem; }
+    .work-item {
+      display: grid; grid-template-columns: 56px 1fr auto;
+      gap: 2rem; align-items: center;
+      padding: 2.2rem 0; border-bottom: 1px solid var(--border);
+      text-decoration: none; color: inherit;
+      transition: padding-left 0.3s;
+      position: relative;
+    }
+    .work-item:first-child { border-top: 1px solid var(--border); }
+    .work-item:hover { padding-left: 0.8rem; }
+    .w-num {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.1em;
+    }
+    .w-info h3 {
+      font-family: var(--display); font-size: 1.5rem;
+      font-weight: 600; margin-bottom: 0.2rem;
+      transition: color 0.2s;
+    }
+    .work-item:hover .w-info h3 { color: var(--accent2); }
+    .w-role {
+      font-family: var(--mono); font-size: 0.7rem;
+      color: var(--accent2); letter-spacing: 0.06em;
+    }
+    .w-arrow {
+      font-family: var(--mono); font-size: 1.1rem;
+      color: var(--accent); opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.3s;
+    }
+    .work-item:hover .w-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 7rem 4rem; border-top: 1px solid var(--border); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3.5rem; }
+    .testi-card {
+      background: var(--bg); padding: 2.5rem;
+      position: relative;
+    }
+    .testi-card::before {
+      content: '\201C';
+      font-family: var(--display);
+      font-size: 5rem; line-height: 1;
+      color: var(--accent);
+      opacity: 0.15;
+      position: absolute; top: 1rem; left: 1.5rem;
+    }
+    .testi-text {
+      font-family: var(--body); font-size: 0.88rem;
+      color: var(--dim); line-height: 1.85;
+      margin-bottom: 1.8rem;
+      position: relative; z-index: 1;
+    }
+    .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+    .testi-avatar {
+      width: 38px; height: 38px;
+      background: var(--border2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display); font-size: 1rem;
+      color: var(--accent2); flex-shrink: 0;
+    }
+    .testi-name {
+      font-family: var(--body); font-size: 0.85rem;
+      font-weight: 600; color: var(--text);
+    }
+    .testi-title {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--muted); letter-spacing: 0.05em;
+    }
+
+    /* ── PROCESS ── */
+    .process { padding: 7rem 4rem; border-top: 1px solid var(--border); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .step {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .step:hover { border-color: var(--accent); }
+    .step-n {
+      font-family: var(--display);
+      font-size: 4rem; font-weight: 600; line-height: 1;
+      color: var(--border2);
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+    .step:hover .step-n { color: rgba(192,57,43,0.15); }
+    .step h3 {
+      font-family: var(--display); font-size: 1.2rem;
+      font-weight: 600; margin-bottom: 0.6rem;
+    }
+    .step p {
+      font-family: var(--body); font-size: 0.8rem;
+      color: var(--dim); line-height: 1.8;
+    }
+
+    /* ── CTA ── */
+    .cta-band {
+      padding: 8rem 4rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(192,57,43,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-band h2 {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 600; line-height: 1.05;
+      margin-bottom: 1rem; position: relative;
+    }
+    .cta-band p {
+      font-family: var(--body); font-size: 1rem;
+      color: var(--dim); max-width: 440px;
+      margin: 0 auto 2.5rem; line-height: 1.8;
+    }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 960px) {
+      .hero { padding: 8rem 1.5rem 5rem; }
+      .hero-deco { display: none; }
+      .hero-stats { gap: 2.5rem; }
+      .services-section, .work-section, .testimonials, .process, .cta-band { padding: 5rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .work-item { grid-template-columns: 40px 1fr; }
+      .w-arrow { display: none; }
+    }
+    @media (max-width: 580px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-transition"></div>
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="bg-glow2"></div>
+  <div class="noise"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Kojo <em>Greg</em></a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Let's Talk</a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Let's Talk</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Software Engineer · Ghana</div>
+      <h1 class="hero-name">Kojo<br/><em>Greg.</em></h1>
+      <div class="hero-tagline">
+        I build <span class="typing-cycle" data-words='["scalable systems.","data pipelines.","enterprise platforms.","backend architecture.","things that last."]'></span><span class="cursor-blink"></span>
+      </div>
+      <p class="hero-desc">Full-stack engineer specializing in scalable, data-driven systems. Backend architecture, enterprise platforms, and data infrastructure built for high-volume users and mission-critical operations.</p>
+      <div class="hero-ctas">
+        <a href="work.html" class="btn btn-primary">View My Work →</a>
+        <a href="contact.html" class="btn btn-outline">Start a Conversation</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num"><span data-target="1000000" data-suffix="+">0+</span></div>
+        <div class="stat-label">Records Processed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-target="3">0</span></div>
+        <div class="stat-label">Enterprise Platforms</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-target="5" data-suffix="+">0+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span data-target="1000" data-suffix="s+">0s+</span></div>
+        <div class="stat-label">Concurrent Users Served</div>
+      </div>
+    </div>
+    <div class="hero-deco">
+      <div class="deco-line">//  const engineer = {</div>
+      <div class="deco-line lit">&nbsp;&nbsp;name: "Kojo Greg",</div>
+      <div class="deco-line dim2">&nbsp;&nbsp;focus: "backend",</div>
+      <div class="deco-line dim2">&nbsp;&nbsp;scale: "millions",</div>
+      <div class="deco-line lit">&nbsp;&nbsp;status: "available",</div>
+      <div class="deco-line">//  };</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="services-header">
+      <div>
+        <div class="label">What I Do</div>
+        <h2 class="section-title fade-up">Two ways I<br/>can help.</h2>
+      </div>
+      <a href="services.html" class="btn btn-outline fade-up">All Services →</a>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card fade-up">
+        <div class="svc-num">01</div>
+        <span class="svc-icon">Σ</span>
+        <h3>Backend & Data Systems</h3>
+        <p>Scalable APIs, data pipelines, and infrastructure designed for high-volume operations and millions of records.</p>
+        <div class="svc-tags"><span class="svc-tag">API Design</span><span class="svc-tag">Data Pipelines</span><span class="svc-tag">PostgreSQL</span></div>
+      </div>
+      <div class="svc-card fade-up">
+        <span class="svc-icon" style="font-family:var(--mono)">{ }</span>
+        <div class="svc-num">02</div>
+        <h3>Enterprise Platforms</h3>
+        <p>End-to-end platforms for government agencies, HR systems, and complex workflow management at organizational scale.</p>
+        <div class="svc-tags"><span class="svc-tag">Enterprise</span><span class="svc-tag">RBAC</span><span class="svc-tag">Workflows</span></div>
+      </div>
+      <div class="svc-card fade-up">
+        <span class="svc-icon">◈</span>
+        <div class="svc-num">03</div>
+        <h3>Analytics & Dashboards</h3>
+        <p>Real-time analytics dashboards and reporting systems that aggregate multi-source data into actionable insights.</p>
+        <div class="svc-tags"><span class="svc-tag">Dashboards</span><span class="svc-tag">Real-Time</span><span class="svc-tag">Analytics</span></div>
+      </div>
+      <div class="svc-card fade-up">
+        <span class="svc-icon" style="font-family:var(--mono);font-size:1.4rem">&gt;_</span>
+        <div class="svc-num">04</div>
+        <h3>Full-Stack Development</h3>
+        <p>Complete applications from database architecture to polished frontend — performant, secure, built to scale.</p>
+        <div class="svc-tags"><span class="svc-tag">React</span><span class="svc-tag">Node.js</span><span class="svc-tag">Cloud</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work-section">
+    <div class="label">Selected Work</div>
+    <h2 class="section-title fade-up">Products that moved<br/>the needle.</h2>
+    <div class="work-list">
+      <a href="work.html" class="work-item fade-up">
+        <div class="w-num">01</div>
+        <div class="w-info">
+          <div class="w-role">Software Engineer (Development Team)</div>
+          <h3>Performance Appraisal System — Ghana Public Service</h3>
+        </div>
+        <div class="w-arrow">→</div>
+      </a>
+      <a href="work.html" class="work-item fade-up">
+        <div class="w-num">02</div>
+        <div class="w-info">
+          <div class="w-role">Full-Stack Software Engineer</div>
+          <h3>Cocoa Farm Data & Inspection Platform</h3>
+        </div>
+        <div class="w-arrow">→</div>
+      </a>
+      <a href="work.html" class="work-item fade-up">
+        <div class="w-num">03</div>
+        <div class="w-info">
+          <div class="w-role">Backend & Data Systems Engineer</div>
+          <h3>Enterprise Analytics & Operational Dashboard</h3>
+        </div>
+        <div class="w-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="label">Testimonials</div>
+    <h2 class="section-title fade-up">What people say.</h2>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <p class="testi-text">Kojo's ability to architect systems that handle massive data volumes while keeping them performant is remarkable. He delivered a platform that exceeded every requirement we set.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Agency Director</div>
+            <div class="testi-title">Government Agency, Ghana</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <p class="testi-text">The data pipeline he built for our agricultural platform processes over a million records with queries that return in milliseconds. The engineering quality is exceptional.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Project Manager</div>
+            <div class="testi-title">Agricultural Management Platform</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <p class="testi-text">Beyond the technical skill, Kojo understands the business problem deeply. The analytics dashboard he built gave our team visibility we never had before — and it just works.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">K</div>
+          <div>
+            <div class="testi-name">Operations Lead</div>
+            <div class="testi-title">Enterprise Analytics Project</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="label">How I Work</div>
+    <h2 class="section-title fade-up">Engagements, done right.</h2>
+    <div class="process-steps">
+      <div class="step fade-up">
+        <div class="step-n">01</div>
+        <h3>Discover</h3>
+        <p>I dig into your problem, constraints, and goals. No jargon, no assumptions — just clarity on what needs to be built.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-n">02</div>
+        <h3>Architect</h3>
+        <p>Assess the technical landscape, identify bottlenecks, and produce a clear, actionable path forward.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-n">03</div>
+        <h3>Build</h3>
+        <p>Engineer, iterate, and ship. Transparent progress updates. Clean code. Zero surprises.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-n">04</div>
+        <h3>Support</h3>
+        <p>Post-launch monitoring, handover, and ongoing advisory. I don't build and disappear.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <h2 class="fade-up">Ready to build<br/>something serious?</h2>
+    <p class="fade-up">Got a complex system to architect, a data challenge to solve, or a platform to ship? Let's talk.</p>
+    <div class="cta-btns fade-up">
+      <a href="contact.html" class="btn btn-primary">Start a Conversation →</a>
+      <a href="work.html" class="btn btn-outline">See My Work</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">Kojo <em>Greg</em></span>
+      <p>Software Engineer specializing in scalable, data-driven systems. Based in Ghana. Available worldwide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Online</h4>
+      <a href="https://github.com/dga-greg" target="_blank">GitHub</a>
+      <a href="https://wa.me/23354669832" target="_blank">WhatsApp</a>
+      
+      
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:gapeatu@gmail.com">gapeatu@gmail.com</a>
+      <a href="contact.html">Book a Call</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 Kojo Greg. All rights reserved.</p>
+    <p>Based in Ghana · Available worldwide</p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work — Kojo Greg</title>
+  <meta name="description" content="Portfolio of enterprise platforms, data systems, and scalable infrastructure built by Kojo Greg."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23060608'/><text y='.9em' font-size='72' font-family='serif' fill='%23c0392b'>K</text></svg>"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .page-hero {
+      padding: 12rem 4rem 6rem;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::after {
+      content: 'WORK';
+      position: absolute; right: -1rem; bottom: -1rem;
+      font-family: var(--display); font-size: 14rem; font-weight: 700;
+      color: rgba(192,57,43,0.03); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .page-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 600; line-height: 1.02;
+      letter-spacing: -0.02em;
+      animation: fadeUp 0.9s ease both;
+    }
+    .page-hero h1 em { color: var(--accent2); font-style: italic; }
+    .page-hero p {
+      font-family: var(--body); font-size: 1rem;
+      color: var(--dim); max-width: 520px;
+      line-height: 1.8; margin-top: 1.5rem;
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+
+    .cases { padding: 0 4rem 6rem; }
+
+    .case {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .case:first-of-type { border-top: 1px solid var(--border); margin-top: 5rem; }
+
+    .case-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 2rem;
+      margin-bottom: 3.5rem; flex-wrap: wrap;
+    }
+    .case-num {
+      font-family: var(--display); font-size: 6rem; font-weight: 600;
+      color: rgba(192,57,43,0.07); line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .case-cat {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--accent2); letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .case-cat::before { content: '—'; color: var(--accent); }
+    .case-title {
+      font-family: var(--display); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600; line-height: 1.1; margin-bottom: 0.5rem;
+    }
+    .case-role {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--dim); letter-spacing: 0.06em;
+    }
+    .case-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .cbadge {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--accent2); border: 1px solid rgba(192,57,43,0.25);
+      padding: 0.25rem 0.8rem; border-radius: 1px;
+    }
+
+    .case-body {
+      display: grid; grid-template-columns: 1fr 320px;
+      gap: 4rem; align-items: start;
+    }
+    .case-body p {
+      font-family: var(--body); font-size: 0.9rem;
+      color: var(--dim); line-height: 1.9; margin-bottom: 1.5rem;
+    }
+    .case-highlights {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.6rem; margin-top: 2rem;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .hl {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-family: var(--body); font-size: 0.8rem;
+      color: var(--text); line-height: 1.5;
+    }
+    .hl::before { content: '▸'; color: var(--accent); flex-shrink: 0; }
+
+    .case-panel {
+      border: 1px solid var(--border);
+      position: sticky; top: 7rem;
+    }
+    .panel-stat {
+      padding: 1.3rem 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .panel-stat:last-child { border-bottom: none; }
+    .ps-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--muted); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 0.4rem;
+    }
+    .ps-val {
+      font-family: var(--display); font-size: 1.05rem;
+      font-weight: 600; color: var(--text);
+    }
+    .ps-val.red { color: var(--accent2); }
+
+    .case-stack {
+      margin-top: 2rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stack-label {
+      font-family: var(--mono); font-size: 0.6rem;
+      color: var(--muted); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .stack-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .sp {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--dim); border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem; border-radius: 1px;
+    }
+
+    @media (max-width: 960px) {
+      .page-hero { padding: 9rem 1.5rem 4rem; }
+      .page-hero::after { display: none; }
+      .cases { padding: 0 1.5rem 4rem; }
+      .case-body { grid-template-columns: 1fr; }
+      .case-panel { position: static; }
+      .case-highlights { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-transition"></div>
+  <div class="cursor"></div><div class="cursor-ring"></div>
+  <div class="bg-grid"></div><div class="bg-glow"></div><div class="noise"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Kojo <em>Greg</em></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a>
+      <a href="work.html" class="active">Work</a><a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Let's Talk</a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a><a href="services.html">Services</a>
+    <a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Let's Talk</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="label">Selected Work</div>
+    <h1>Products that<br/><em>moved</em> the needle.</h1>
+    <p>Enterprise platforms, data systems, and scalable infrastructure built for real-world operational complexity.</p>
+  </section>
+
+  <section class="cases">
+
+    <!-- CASE 1 -->
+    <div class="case">
+      <div class="case-top">
+        <div>
+          <div class="case-num">01</div>
+          <div class="case-cat">Enterprise · Government</div>
+          <h2 class="case-title">Performance Appraisal System —<br/>Ghana Public Service</h2>
+          <div class="case-role">Software Engineer (Development Team)</div>
+          <div class="case-badges">
+            <span class="cbadge">Enterprise</span><span class="cbadge">Government</span>
+            <span class="cbadge">HR Tech</span><span class="cbadge">High Concurrency</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body fade-up">
+        <div>
+          <p>Contributed to the development of a comprehensive Performance Appraisal system being deployed across all public service institutions in Ghana. The platform manages staff performance evaluation workflows, organizational structures, and appraisal records at a national scale, serving public servants across multiple government institutions.</p>
+          <p>As part of the engineering team, I worked on building key components of the system including appraisal workflows, backend API development, and frontend features using Angular. The platform supports hierarchical KRA/KPI-based evaluation processes, multi-stage approval workflows, role-based access control, and automated scoring services designed to handle thousands of concurrent users.</p>
+          <div class="case-highlights">
+            <div class="hl">Hierarchical KRA/KPI appraisal engine</div>
+            <div class="hl">Multi-stage approval workflows</div>
+            <div class="hl">Thousands of concurrent users</div>
+            <div class="hl">All public service institutions</div>
+            <div class="hl">Role-based access control (RBAC)</div>
+            <div class="hl">Automated background scoring</div>
+            <div class="hl">Reporting & analytics dashboards</div>
+            <div class="hl">National-scale deployment</div>
+          </div>
+          <div class="case-stack">
+            <div class="stack-label">Stack</div>
+            <div class="stack-pills">
+              <span class="sp">Angular</span><span class="sp">Node.js</span>
+              <span class="sp">PostgreSQL</span><span class="sp">Redis</span>
+              <span class="sp">REST APIs</span><span class="sp">RBAC</span><span class="sp">Docker</span>
+            </div>
+          </div>
+        </div>
+        <div class="case-panel">
+          <div class="panel-stat"><div class="ps-label">Scale</div><div class="ps-val red">1,000s+ Users</div></div>
+          <div class="panel-stat"><div class="ps-label">Scope</div><div class="ps-val">All Public Service Institutions</div></div>
+          <div class="panel-stat"><div class="ps-label">Role</div><div class="ps-val">Software Engineer (Team)</div></div>
+          <div class="panel-stat"><div class="ps-label">Domain</div><div class="ps-val">Government / HR Tech</div></div>
+          <div class="panel-stat"><div class="ps-label">Key Challenge</div><div class="ps-val">National-scale appraisal across all public institutions</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case">
+      <div class="case-top">
+        <div>
+          <div class="case-num">02</div>
+          <div class="case-cat">AgriTech · Data Systems</div>
+          <h2 class="case-title">Cocoa Farm Data &<br/>Inspection Platform</h2>
+          <div class="case-role">Full-Stack Software Engineer</div>
+          <div class="case-badges">
+            <span class="cbadge">AgriTech</span><span class="cbadge">Large-Scale Data</span>
+            <span class="cbadge">Geospatial</span><span class="cbadge">1M+ Records</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body fade-up">
+        <div>
+          <p>Built a large-scale agricultural data management platform to manage cocoa farm records, farmer information, and field inspection activities across Ghana. The system processes over one million farm records and supports complex geospatial and operational queries for district-level monitoring.</p>
+          <p>The engineering challenge was significant: querying and aggregating massive agricultural datasets in near-real time, while supporting geospatial operations for farm mapping and field verification. I implemented optimized query strategies, aggregation pipelines, and indexing specifically tuned for large-scale agricultural data patterns.</p>
+          <div class="case-highlights">
+            <div class="hl">1M+ farm record processing</div>
+            <div class="hl">Geospatial query support</div>
+            <div class="hl">District-level dashboards</div>
+            <div class="hl">Field inspection management</div>
+            <div class="hl">Optimized aggregation pipelines</div>
+            <div class="hl">Farmer data management</div>
+            <div class="hl">Complex analytical reporting</div>
+            <div class="hl">Full-stack implementation</div>
+          </div>
+          <div class="case-stack">
+            <div class="stack-label">Stack</div>
+            <div class="stack-pills">
+              <span class="sp">MongoDB</span><span class="sp">Aggregation Pipelines</span>
+              <span class="sp">Geospatial Indexing</span><span class="sp">Node.js</span>
+              <span class="sp">React</span><span class="sp">Chart.js</span><span class="sp">REST API</span>
+            </div>
+          </div>
+        </div>
+        <div class="case-panel">
+          <div class="panel-stat"><div class="ps-label">Data Scale</div><div class="ps-val red">1,000,000+ Records</div></div>
+          <div class="panel-stat"><div class="ps-label">Coverage</div><div class="ps-val">National, District-Level</div></div>
+          <div class="panel-stat"><div class="ps-label">Role</div><div class="ps-val">Full-Stack Engineer</div></div>
+          <div class="panel-stat"><div class="ps-label">Domain</div><div class="ps-val">AgriTech / Data</div></div>
+          <div class="panel-stat"><div class="ps-label">Key Challenge</div><div class="ps-val">Geospatial queries over 1M+ records</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="case">
+      <div class="case-top">
+        <div>
+          <div class="case-num">03</div>
+          <div class="case-cat">Analytics · Enterprise</div>
+          <h2 class="case-title">Enterprise Analytics &<br/>Operational Dashboard System</h2>
+          <div class="case-role">Backend & Data Systems Engineer</div>
+          <div class="case-badges">
+            <span class="cbadge">Analytics</span><span class="cbadge">Real-Time</span>
+            <span class="cbadge">Multi-Source</span><span class="cbadge">High Concurrency</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-body fade-up">
+        <div>
+          <p>Developed a high-performance analytics and reporting platform that consolidates operational data from multiple source systems into a unified intelligence layer, powering real-time dashboards for thousands of concurrent users across the organization.</p>
+          <p>My focus was the data layer: efficient pipelines that ingest, normalize, and aggregate data from disparate sources without introducing latency that would degrade real-time performance. I designed optimized database structures, query patterns, and layered caching strategies to keep the system fast as data volumes grew.</p>
+          <div class="case-highlights">
+            <div class="hl">Multi-source data aggregation</div>
+            <div class="hl">Real-time operational dashboards</div>
+            <div class="hl">Millions of records processed</div>
+            <div class="hl">Thousands of concurrent users</div>
+            <div class="hl">Performance optimization at scale</div>
+            <div class="hl">Secure, role-aware API design</div>
+            <div class="hl">Regional performance analytics</div>
+            <div class="hl">Data pipeline architecture</div>
+          </div>
+          <div class="case-stack">
+            <div class="stack-label">Stack</div>
+            <div class="stack-pills">
+              <span class="sp">PostgreSQL</span><span class="sp">Data Pipelines</span>
+              <span class="sp">Redis Caching</span><span class="sp">Node.js</span>
+              <span class="sp">REST API</span><span class="sp">Dashboard UI</span><span class="sp">RBAC</span>
+            </div>
+          </div>
+        </div>
+        <div class="case-panel">
+          <div class="panel-stat"><div class="ps-label">Users</div><div class="ps-val red">1,000s+ Concurrent</div></div>
+          <div class="panel-stat"><div class="ps-label">Data Volume</div><div class="ps-val">Millions of Records</div></div>
+          <div class="panel-stat"><div class="ps-label">Role</div><div class="ps-val">Backend & Data Engineer</div></div>
+          <div class="panel-stat"><div class="ps-label">Domain</div><div class="ps-val">Analytics / Enterprise</div></div>
+          <div class="panel-stat"><div class="ps-label">Key Challenge</div><div class="ps-val">Real-time multi-source aggregation at scale</div></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">Kojo <em>Greg</em></span>
+      <p>Software Engineer specializing in scalable, data-driven systems. Based in Ghana. Available worldwide.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Online</h4><a href="https://github.com/dga-greg" target="_blank">GitHub</a>
+      <a href="https://wa.me/23354669832" target="_blank">WhatsApp</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:gapeatu@gmail.com">gapeatu@gmail.com</a></div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 Kojo Greg. All rights reserved.</p>
+    <p>Based in Ghana · Available worldwide</p>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Kojo Greg</title>
+  <meta name="description" content="Get in touch with Kojo Greg — Software Engineer available for projects worldwide."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23060608'/><text y='.9em' font-size='72' font-family='serif' fill='%23c0392b'>K</text></svg>"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .page-hero {
+      padding: 12rem 4rem 6rem;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::after {
+      content: 'HELLO';
+      position: absolute; right: -1rem; bottom: -1rem;
+      font-family: var(--display); font-size: 13rem; font-weight: 700;
+      color: rgba(192,57,43,0.03); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .page-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 600; line-height: 1.02;
+      letter-spacing: -0.02em;
+      animation: fadeUp 0.9s ease both;
+    }
+    .page-hero h1 em { color: var(--accent2); font-style: italic; }
+    .page-hero p {
+      font-family: var(--body); font-size: 1rem;
+      color: var(--dim); max-width: 520px;
+      line-height: 1.8; margin-top: 1.5rem;
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+
+    .contact-body {
+      padding: 6rem 4rem;
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 5rem; align-items: start;
+    }
+
+    /* FORM */
+    .form-head {
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--accent2); letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .form-head::before { content: '—'; color: var(--accent); }
+
+    .field {
+      margin-bottom: 1.4rem;
+    }
+    .field label {
+      display: block;
+      font-family: var(--mono); font-size: 0.62rem;
+      color: var(--dim); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--body); font-size: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      border-radius: 1px;
+      appearance: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.08);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--muted); }
+    .field textarea { resize: vertical; min-height: 150px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-note {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--muted); margin-top: 0.5rem; margin-bottom: 1.5rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--accent); color: var(--text);
+      border: none; cursor: none;
+      font-family: var(--mono); font-size: 0.78rem;
+      font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1.1rem 2rem;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      border-radius: 1px;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    }
+    .submit-btn:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(192,57,43,0.3);
+    }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Success */
+    .form-success {
+      display: none; padding: 4rem 2rem;
+      border: 1px solid rgba(192,57,43,0.2);
+      background: rgba(192,57,43,0.03);
+      text-align: center;
+    }
+    .form-success .check {
+      font-family: var(--display); font-size: 3rem;
+      color: var(--accent2); margin-bottom: 1rem;
+    }
+    .form-success h3 { font-family: var(--display); font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .form-success p { font-family: var(--body); font-size: 0.88rem; color: var(--dim); }
+
+    /* SIDE PANEL */
+    .contact-side { position: sticky; top: 7rem; }
+    .avail-badge {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(39,174,96,0.2);
+      background: rgba(39,174,96,0.04);
+      margin-bottom: 1.5rem;
+      font-family: var(--mono); font-size: 0.72rem; color: #27ae60;
+    }
+    .avail-dot {
+      width: 7px; height: 7px;
+      background: #27ae60; border-radius: 50%;
+      flex-shrink: 0; box-shadow: 0 0 8px #27ae60;
+      animation: blink 2s ease infinite;
+    }
+    .contact-card {
+      border: 1px solid var(--border);
+      margin-bottom: 1px;
+      transition: border-color 0.3s;
+    }
+    .contact-card:hover { border-color: var(--accent); }
+    .contact-card a,
+    .contact-card div {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      font-family: var(--body); font-size: 0.85rem;
+      color: var(--text); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-card a:hover { color: var(--accent2); }
+    .cc-label {
+      font-family: var(--mono); font-size: 0.58rem;
+      color: var(--muted); letter-spacing: 0.12em;
+      text-transform: uppercase; display: block;
+      margin-bottom: 0.2rem;
+    }
+    .cc-arrow { color: var(--muted); font-size: 0.8rem; }
+
+    .social-row {
+      display: flex; flex-direction: column; gap: 1px;
+      margin-top: 1.5rem;
+    }
+    .social-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--border);
+      font-family: var(--mono); font-size: 0.72rem; color: var(--dim);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { border-color: var(--accent); color: var(--accent2); }
+
+    @media (max-width: 960px) {
+      .page-hero { padding: 9rem 1.5rem 4rem; }
+      .page-hero::after { display: none; }
+      .contact-body { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .contact-side { position: static; }
+      .field-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-transition"></div>
+  <div class="cursor"></div><div class="cursor-ring"></div>
+  <div class="bg-grid"></div><div class="bg-glow"></div><div class="noise"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Kojo <em>Greg</em></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a>
+      <a href="work.html">Work</a><a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta active">Let's Talk</a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a><a href="services.html">Services</a>
+    <a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Let's Talk</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="label">Contact</div>
+    <h1>Let's build<br/>something <em>serious.</em></h1>
+    <p>Got a complex system to architect, a data challenge to solve, or a platform to build? Tell me about it.</p>
+  </section>
+
+  <section class="contact-body">
+    <!-- FORM -->
+    <div class="fade-up">
+      <div class="form-head">Send a Message</div>
+      <!--
+        TO ACTIVATE: Go to formspree.io, create a free account,
+        create a form, and replace YOUR_FORM_ID below with your actual ID.
+        e.g. action="https://formspree.io/f/abcdefgh"
+      -->
+      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="field-row">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" name="firstName" placeholder="John" required/>
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" name="lastName" placeholder="Mensah" required/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="john@company.com" required/>
+        </div>
+        <div class="field">
+          <label>Company / Organization</label>
+          <input type="text" name="company" placeholder="Your company (optional)"/>
+        </div>
+        <div class="field">
+          <label>What do you need help with?</label>
+          <select name="service">
+            <option value="" disabled selected>Select a service...</option>
+            <option>Backend Architecture & API Design</option>
+            <option>Data Systems & Analytics Engineering</option>
+            <option>Enterprise Platform Development</option>
+            <option>Full-Stack Development</option>
+            <option>Technical Consulting</option>
+            <option>Other / Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tell me about your project</label>
+          <textarea name="message" placeholder="Describe the problem you're trying to solve, the scale involved, your timeline, and any technical constraints..." required></textarea>
+        </div>
+        <div class="form-note">I typically respond within 24–48 hours.</div>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Send Message →
+        </button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✓</div>
+        <h3>Message received.</h3>
+        <p>Thanks for reaching out. I'll get back to you within 24–48 hours.</p>
+      </div>
+    </div>
+
+    <!-- SIDE -->
+    <div class="contact-side fade-up">
+      <div class="avail-badge">
+        <div class="avail-dot"></div>
+        Currently available for new projects
+      </div>
+      <div class="contact-card">
+        <a href="mailto:gapeatu@gmail.com">
+          <div><span class="cc-label">Email</span>gapeatu@gmail.com</div>
+          <span class="cc-arrow">↗</span>
+        </a>
+      </div>
+      <div class="contact-card">
+        <div>
+          <div><span class="cc-label">Location</span>Accra, Ghana · GMT+0</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div>
+          <div><span class="cc-label">Response Time</span>Within 24–48 hours</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div>
+          <div><span class="cc-label">Availability</span>Worldwide · Remote</div>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a href="https://github.com/dga-greg" target="_blank" class="social-btn">
+          GitHub <span>↗</span>
+        </a>
+        <a href="https://wa.me/23354669832" target="_blank" class="social-btn">
+          WhatsApp <span>↗</span>
+        </a>
+        
+        
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="logo">Kojo <em>Greg</em></span>
+      <p>Software Engineer specializing in scalable, data-driven systems. Based in Ghana. Available worldwide.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Online</h4><a href="https://github.com/dga-greg" target="_blank">GitHub</a>
+      <a href="https://wa.me/23354669832" target="_blank">WhatsApp</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:gapeatu@gmail.com">gapeatu@gmail.com</a></div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 Kojo Greg. All rights reserved.</p>
+    <p>Based in Ghana · Available worldwide</p>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    const form = document.getElementById('contactForm');
+    const btn = document.getElementById('submitBtn');
+    const success = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', async function(e) {
+      // If using Formspree, remove this preventDefault and let it submit normally
+      // For now, simulate success:
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
